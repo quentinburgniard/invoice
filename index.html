@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Load Materialize https://materializecss.com -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Load Form Builder -->
+  <script defer src="https://form-builder.digitalleman.com/form-builder.js"></script>
+  <title>Invoice Generator</title>
+</head>
+
+<body>
+  <!-- Init Form Builder -->
+  <script>
+    var formBuilder = formBuilder || {};
+    formBuilder.debug = true;
+    formBuilder.config = {
+      form: {
+        name: 'Invoice',
+        version: '1.0.0',
+      },
+      plugins: [
+        'date',
+        'img',
+        'local-backup',
+        'prefill'
+      ],
+      fields: [{
+          name: 'Sender Details',
+          type: 'pagination',
+          fields: [{
+              name: 'Sender Name',
+              type: 'text'
+            },
+            {
+              name: 'Sender Details',
+              type: 'textarea'
+            },
+            {
+              name: 'Logo',
+              type: 'img'
+            }
+          ]
+        },
+        {
+          name: 'Recipient Details',
+          type: 'pagination',
+          fields: [{
+              name: 'Recipient Name',
+              type: 'text'
+            },
+            {
+              name: 'Recipient Details',
+              type: 'textarea'
+            }
+          ]
+        },
+        {
+          name: 'Invoice Details',
+          type: 'pagination',
+          fields: [{
+              name: 'Invoice Number',
+              type: 'number'
+            },
+            {
+              name: 'Date',
+              type: 'date'
+            },
+            {
+              name: 'Language',
+              type: 'select',
+              options: [
+                'EN',
+                'FR'
+              ]
+            },
+            {
+              name: 'Currency',
+              type: 'select',
+              options: [
+                'CHF',
+                'EUR',
+                'USD'
+              ]
+            },
+            {
+              name: 'Format',
+              type: 'select',
+              options: [
+                'HTML',
+                'PDF'
+              ]
+            }
+          ]
+        },
+        {
+          name: 'Items',
+          type: 'pagination',
+          fields: [{
+              name: 'Payment Methods',
+              type: 'collection',
+              max: 1,
+              fields: [{
+                  name: 'Payment Method',
+                  type: 'text'
+                }
+              ]
+            },
+            {
+              name: 'Items',
+              type: 'collection',
+              max: 3,
+              fields: [{
+                  name: 'Item',
+                  type: 'text'
+                },
+                {
+                  name: 'Price',
+                  type: 'number'
+                }
+              ]
+            }
+          ]
+        }
+      ],
+    };
+  </script>
+  <!-- Add your HTML -->
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m10 l7 xl6">
+        <!-- Add From Builder wrapper -->
+        <form action="https://invoice-generator.digitalleman.com" id="form-builder"></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: Add Form Builder preview window -->
+  <div id="form-builder-preview" height="594px" width="420px"></div>
+  <!-- Optional: Add Form Builder action button -->
+  <div id="form-builder-action"></div>
+</body>
+
+</html>
